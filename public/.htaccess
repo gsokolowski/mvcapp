@@ -1,0 +1,12 @@
+# allows to call index insted of index.php
+Options -MultiViews
+# allow to rewrite url
+RewriteEngine On
+# rewrite base is your root to the project in my case i use virtual host pointing to musicapp/public
+RewriteBase /
+# directory checking if not existing directory redirect index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+# file checking if not existing filename redirect index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+# rewrite rule to match everything ^(.+)$ and pass it through index.php and attach to index.php as a url
+RewriteRule ^(.+)$ index.php?request=$1 [QSA,L]
